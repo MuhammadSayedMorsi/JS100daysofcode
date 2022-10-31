@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<!-- Coding By CodingNepal - youtube.com/codingnepal -->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Draggable Div Element in JavaScipt | CodingNepal</title>
+    <link rel="stylesheet" href="./main.css" />
+    <!-- Linking BoxIcon for Icon -->
+    <link
+      href="https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>Draggable Div</header>
+      <div class="content">
+        <div class="icon"><i class="bx bx-move"></i></div>
+        <div class="title">Draggable Div</div>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium
+          fugit repellat dolore expedita
+        </p>
+      </div>
+    </div>
+
+    <script>
+      const wrapper = document.querySelector('.wrapper'),
+        header = wrapper.querySelector('header');
+
+      const onDrag = ({ movementX, movementY }) => {
+        let getStyle = window.getComputedStyle(wrapper);
+        let left = parseInt(getStyle.left); // getting left value of wrapper and parsing string to number or integer
+        let top = parseInt(getStyle.top); // getting top   value of wrapper and parsing string to number or integer
+        wrapper.style.left = `${left + movementX}px`;
+        wrapper.style.top = `${top + movementY}px`;
+      };
+
+      header.addEventListener('mousedown', () => {
+        header.addEventListener('mousemove', onDrag);
+      });
+
+      document.addEventListener('mouseup', () => {
+        header.removeEventListener('mousemove', onDrag);
+      });
+    </script>
+  </body>
+</html>
